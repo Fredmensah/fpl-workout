@@ -1,0 +1,25 @@
+{
+  "interview" : {
+    "development": {
+      "v3": {
+        "basePath" : "run.mocky.io",
+        "scheme" : "https",
+        "prefix" : ""
+      }
+    },
+    "qa": {
+      "v3": {
+        "basePath" : "run.mocky.io",
+        "scheme" : "https",
+        "prefix" : ""
+      }
+    },
+    "production": {
+      "v3": {
+        "basePath" : "run.mocky.io",
+        "scheme" : "https",
+        "prefix" : ""
+      }
+    }
+  }
+}

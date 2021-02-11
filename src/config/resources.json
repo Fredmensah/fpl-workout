@@ -1,0 +1,29 @@
+{
+  "managers": {
+    "resource": "managers",
+    "primaryKeyName": "managerId",
+    "columns": [
+      {
+        "title": "Manager Name",
+        "dataIndex": "managerName"
+      },
+      {
+        "title": "Team Name",
+        "dataIndex": "teamName"
+      },
+      {
+        "title": "teamId",
+        "dataIndex": "teamId"
+      },
+      {
+        "title": "Total Points",
+        "dataIndex": "totalPoints"
+      }
+    ],
+    "notAddNewColumns": [
+      "totalPoints",
+      "teamId"
+    ]
+  },
+  "others": {}
+}
