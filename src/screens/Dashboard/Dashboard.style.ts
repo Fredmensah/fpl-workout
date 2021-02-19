@@ -8,20 +8,26 @@ export const styles = {
         width: '100%'
     },
     button: {
-        textAlign: 'right',
+        //textAlign: 'right',
         alignItems: 'flex-end',
-        float: 'right',
+        //float: 'right',
         marginBottom: '20px',
         backgroundColor: 'orange',
-        borderColor: 'orange'
+        borderColor: 'orange',
+        marginRight: '5px'
     },
     button2: {
-        textAlign: 'right',
+        //textAlign: 'right',
         alignItems: 'flex-end',
-        float: 'right',
+        //float: 'inline-end',
         marginBottom: '20px',
         marginRight: '5px',
         backgroundColor: 'green',
         borderColor: 'green'
+    },
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
     }
 };

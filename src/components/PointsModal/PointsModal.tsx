@@ -42,9 +42,10 @@ export const PointsModal = (props: PointsModalProps) => {
         });
     };
 
-    const handleInputChange = ( event ) => {
+    const handleInputChange = ( event: any ) => {
         const {...oldParams} = params;
 
+        //@ts-ignore
         oldParams[event.target.name] = event.target.value;
         setParams(oldParams);
     };
@@ -52,12 +53,14 @@ export const PointsModal = (props: PointsModalProps) => {
     const onChangeSelect = (name: string , value: number | string) => {
         const {...oldParams} = params;
 
+        //@ts-ignore
         oldParams[name] = value;
         setParams(oldParams);
     };
 
     return (
         <Modal title={title} visible={state} onOk={handleOkHandler} onCancel={() => handleCancel()}>
+            {/*@ts-ignore*/}
             <div style={styles.container}>
                 {
                     teams.length &&
@@ -66,9 +69,11 @@ export const PointsModal = (props: PointsModalProps) => {
                         style={styles.inputItem}
                         placeholder="Select a team"
                         optionFilterProp="children"
+                        //@ts-ignore
                         onChange={(event) => (onChangeSelect('teamId' , event))}
                         //onSearch={onSearch}
                         filterOption={(input, option) =>
+                            /*@ts-ignore*/
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
@@ -88,9 +93,11 @@ export const PointsModal = (props: PointsModalProps) => {
                         style={styles.inputItem}
                         placeholder="Select a game week"
                         optionFilterProp="children"
+                        //@ts-ignore
                         onChange={(event) => (onChangeSelect('gameWeek' , event))}
                         //onSearch={onSearch}
                         filterOption={(input, option) =>
+                            /*@ts-ignore*/
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >

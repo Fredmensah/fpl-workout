@@ -19,6 +19,14 @@ interface ManagerType {
     "key"?: number
 }
 
+interface ManagerType2 {
+    "managerName": string
+    "teamName": string
+    "teamId": number
+    "points"?: number,
+    "key"?: number
+}
+
 export const Dashboard = (props: DashboardProps) => {
     const {
         resourceName
@@ -83,6 +91,7 @@ export const Dashboard = (props: DashboardProps) => {
                 ...params,
                 teamId,
                 key: teamId,
+                //@ts-ignore
                 totalPoints: 0,
             });
 
@@ -108,7 +117,7 @@ export const Dashboard = (props: DashboardProps) => {
         setModalType('add');
     };
 
-    const addPoints = (params) => {
+    const addPoints = (params: any) => {
         const [...trimData] = data;
         const [...oldManagersData] = managersData;
 
@@ -116,12 +125,14 @@ export const Dashboard = (props: DashboardProps) => {
 
         trimData[itemIndex] = {
             ...trimData[itemIndex],
+            //@ts-ignore
             totalPoints: parseFloat(trimData[itemIndex].totalPoints) + parseFloat(params.points)
         };
 
         oldManagersData[itemIndex] = {
             ...oldManagersData[itemIndex],
             points: [
+                //@ts-ignore
                 ...oldManagersData[itemIndex].points,
                 {
                     'gameWeek': params.gameWeek,
@@ -162,7 +173,7 @@ export const Dashboard = (props: DashboardProps) => {
             [{
                 title: 'Delete',
                 dataIndex: 'delete',
-                render: (text, record) =>
+                render: (text: string, record: any) =>
                     data.length >= 1 ? (
                         <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
                             <a style={{marginRight: '10px'}}>Delete</a>
@@ -172,7 +183,7 @@ export const Dashboard = (props: DashboardProps) => {
             {
                 title: 'Edit',
                 dataIndex: 'edit',
-                render: (text, record) =>
+                render: (text: string, record: any) =>
                     data.length >= 1 ? (
                         <Popconfirm title="Sure to edit?" onConfirm={() => handleEdit(record)}>
                             <a>Edit</a>
@@ -192,6 +203,7 @@ export const Dashboard = (props: DashboardProps) => {
                 excludeColumns={excludeManagerColumns}
                 title={`${modalType === 'add' ? `Add new ` : `Edit `} manager`}
                 type={modalType}
+                //@ts-ignore
                 editData={currentManager}
             />
 
@@ -199,32 +211,34 @@ export const Dashboard = (props: DashboardProps) => {
                 state={openPointsModal}
                 handleOk={addPoints}
                 handleCancel={closePointsModal}
+                //@ts-ignore
                 teams={data}
                 title={`Add team points`}
             />
+            {/*@ts-ignore*/}
+            <div style={styles.buttonContainer}>
+                <Button
+                    style={styles.button}
+                    type="primary"
+                    onClick={() => setOpenAddModal(true)}
+                    /*onClick={this.start}
+                    disabled={!hasSelected}
+                    loading={loading}*/
+                >
+                    Add new manager
+                </Button>
 
-            <Button
-                style={styles.button}
-                type="primary"
-                onClick={() => setOpenAddModal(true)}
-                /*onClick={this.start}
-                disabled={!hasSelected}
-                loading={loading}*/
-            >
-                Add new manager
-            </Button>
-
-            <Button
-                style={styles.button2}
-                type="primary"
-                onClick={() => setOpenPointsModal(true)}
-                /*onClick={this.start}
-                disabled={!hasSelected}
-                loading={loading}*/
-            >
-                Add user points
-            </Button>
-
+                <Button
+                    style={styles.button2}
+                    type="primary"
+                    onClick={() => setOpenPointsModal(true)}
+                    /*onClick={this.start}
+                    disabled={!hasSelected}
+                    loading={loading}*/
+                >
+                    Add user points
+                </Button>
+            </div>
             <Table columns={[...managerColumns, ...renderActions()]} dataSource={data} />
         </div>
     )
